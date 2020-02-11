@@ -39,7 +39,9 @@ def populate():
 			]
 	cats = {'Python': {'pages': python_pages, 'likes': 64, 'views': 128},
 			'Django': {'pages': django_pages, 'likes': 32, 'views': 64},
-			'Other Frameworks': {'pages': other_pages, 'likes': 16, 'views': 32} }
+			'Other Frameworks': {'pages': other_pages, 'likes': 16, 'views': 32},
+			'Test category 1': {'pages': other_pages, 'likes': 15, 'views': 32},
+			'Test category 2': {'pages': other_pages, 'likes': 14, 'views': 32} }
 	for cat, cat_data in cats.items():
 		c = add_cat(cat,cat_data['views'],cat_data['likes'])
 		for p in cat_data['pages']:
