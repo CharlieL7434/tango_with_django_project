@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 
 class Category(models.Model):
 	MAX_LENGTH = 128
@@ -15,6 +16,7 @@ class Category(models.Model):
 		verbose_name_plural = 'Categories'
 	def __str__(self):
 		return self.name
+
 class Page(models.Model):
 	MAX_LENGTH =128
 	category =models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -23,6 +25,13 @@ class Page(models.Model):
 	views = models.IntegerField(default=0)
 	def __str__(self):
 		return self.title
+
 class PageAdmin (admin.ModelAdmin):
 	list_display = ('title', 'category', 'url')
-# Create your models here.
+
+class UserProfile (models.Model):
+	user = models.OneToOneField(User, on_delete = models.CASCADE)
+	website = models.URLField(blank=True)
+	picture = models.ImageField(upload_to='profile_images', blank= True)
+	def __str__ (self):
+		return self.user.username
